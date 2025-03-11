@@ -1,11 +1,9 @@
 import utils
+from utils import xor
 import os.path
 dir = os.path.dirname(__file__)
 ftest = os.path.join(dir, 'day02_test.txt')
 finput = os.path.join(dir, 'day02_input.txt')
-
-def xor(b1, b2):
-    return (not b2 and b1) or (not b1 and b2)
 
 def check(ns):
     v = ns[0]

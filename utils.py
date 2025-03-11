@@ -24,3 +24,6 @@ def s2ns(s):
     for w in s.split():
         res.append(int(w))
     return res
+
+def xor(b1, b2):
+    return (not b2 and b1) or (not b1 and b2)
