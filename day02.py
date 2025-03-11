@@ -1,8 +1,8 @@
 import utils
-import profile
-
-ftest = 'E:/25_aoc_py/day02_test.txt'
-finput = 'E:/25_aoc_py/day02_input.txt'
+import os.path
+dir = os.path.dirname(__file__)
+ftest = os.path.join(dir, 'day02_test.txt')
+finput = os.path.join(dir, 'day02_input.txt')
 
 def xor(b1, b2):
     return (not b2 and b1) or (not b1 and b2)
@@ -19,6 +19,7 @@ def check(ns):
         v = v2
     return True
 
+@utils.timeit
 def part1(fname):
     res = 0
     for line in utils.f2lines(fname):
@@ -26,9 +27,10 @@ def part1(fname):
             res += 1
     return res
 
-print(2 == part1(ftest))
-print(part1(finput))
-#564
+def do1():
+    print(2 == part1(ftest))
+    print(part1(finput))
+    #564
 
 def check2(ns):
     for n in range(len(ns)):
@@ -36,6 +38,7 @@ def check2(ns):
             return True
     return False
 
+@utils.timeit
 def part2(fname):
     res = 0
     for line in utils.f2lines(fname):
@@ -44,8 +47,7 @@ def part2(fname):
              res += 1
     return res
 
-print(4 == part2(ftest))
-print(part2(finput))
-#604
-
-profile.run("part2(finput)")
+def do2():
+    print(4 == part2(ftest))
+    print(part2(finput))
+    #604

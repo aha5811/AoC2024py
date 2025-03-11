@@ -1,9 +1,9 @@
 import utils
 import map
-import profile
-
-ftest = 'E:/25_aoc_py/day04_test.txt'
-finput = 'E:/25_aoc_py/day04_input.txt'
+import os.path
+dir = os.path.dirname(__file__)
+ftest = os.path.join(dir, 'day04_test.txt')
+finput = os.path.join(dir, 'day04_input.txt')
 
 def checkP1(m, p, s, d):
     l = list(s)
@@ -16,6 +16,7 @@ def checkP1(m, p, s, d):
             return False
     return True
 
+@utils.timeit
 def part1(fname):
     res = 0
     m = map.Map(fname)
@@ -25,9 +26,10 @@ def part1(fname):
                 res += 1
     return res
 
-print(18 == part1(ftest))
-print(part1(finput))
-#2521
+def do1():
+    print(18 == part1(ftest))
+    print(part1(finput))
+    #2521
 
 def get1(m, p, d):
     res = m.get(p.x + d[0], p.y + d[1])
@@ -39,6 +41,7 @@ def get2(m, p, d1, d2):
 def ok(s):
     return s == 'MS' or s == 'SM'
 
+@utils.timeit
 def part2(fname):
     res = 0
     m = map.Map(fname)
@@ -49,8 +52,7 @@ def part2(fname):
             res += 1
     return res
 
-print(9 == part2(ftest))
-print(part2(finput))
-#1912
-
-profile.run("part2(finput)")
+def do2():
+    print(9 == part2(ftest))
+    print(part2(finput))
+    #1912

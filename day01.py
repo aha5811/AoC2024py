@@ -1,9 +1,9 @@
 import utils
-import profile
 from collections import Counter
-
-ftest = 'E:/25_aoc_py/day01_test.txt'
-finput = 'E:/25_aoc_py/day01_input.txt'
+import os.path
+dir = os.path.dirname(__file__)
+ftest = os.path.join(dir, 'day01_test.txt')
+finput = os.path.join(dir, 'day01_input.txt')
 
 def read(fname):
     l1, l2 = [], []
@@ -13,6 +13,7 @@ def read(fname):
         l2.append(n2[1])
     return (l1, l2)
 
+@utils.timeit
 def part1(fname):
     res = 0
     l1, l2 = read(fname)
@@ -22,10 +23,12 @@ def part1(fname):
         res += abs(n1 - n2)
     return res
 
-print(11 == part1(ftest))
-print(part1(finput))
-#2057374
+def do1():
+    print(11 == part1(ftest))
+    print(part1(finput))
+    #2057374
 
+@utils.timeit
 def part2(fname):
     res = 0
     l1, l2 = read(fname)
@@ -34,8 +37,7 @@ def part2(fname):
         res += n * c1[n] * c2[n]
     return res
 
-print(31 == part2(ftest))
-print(part2(finput))
-#23177084
-
-profile.run("part2(finput)")
+def do2():
+    print(31 == part2(ftest))
+    print(part2(finput))
+    #23177084

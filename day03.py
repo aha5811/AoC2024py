@@ -1,10 +1,10 @@
 import utils
 import re
-import profile
-
-ftest1 = 'E:/25_aoc_py/day03_test.txt'
-ftest2 = 'E:/25_aoc_py/day03_2_test.txt'
-finput = 'E:/25_aoc_py/day03_input.txt'
+import os.path
+dir = os.path.dirname(__file__)
+ftest1 = os.path.join(dir, 'day03_test.txt')
+ftest2 = os.path.join(dir, 'day03_2_test.txt')
+finput = os.path.join(dir, 'day03_input.txt')
 
 reMul = "mul\\((\\d+),(\\d+)\\)"
 
@@ -23,12 +23,14 @@ def part(mulF, fname):
         s += line
     return mulF(s)
 
+@utils.timeit
 def part1(fname):
     return part(getMul1, fname)
 
-print(161 == part1(ftest1))
-print(part1(finput))
-#174960292
+def do1():
+    print(161 == part1(ftest1))
+    print(part1(finput))
+    #174960292
 
 re2 = reMul + "|(do(?:n't)?)\\(\\)"
 
@@ -44,11 +46,11 @@ def getMul2(s):
             res += mul(m)
     return res    
 
+@utils.timeit
 def part2(fname):
     return part(getMul2, fname)
 
-print(48 == part2(ftest2))
-print(part2(finput))
-#56275602
-
-profile.run("part2(finput)")
+def do2():
+    print(48 == part2(ftest2))
+    print(part2(finput))
+    #56275602
