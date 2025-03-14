@@ -16,7 +16,7 @@ def f2lines(fname):
     res = []
     with open(fname, 'r') as file:
         for line in file:
-            res.append(line)
+            res.append(line.strip())
     return res
 
 def s2ns(s):
@@ -27,3 +27,9 @@ def s2ns(s):
 
 def xor(b1, b2):
     return (not b2 and b1) or (not b1 and b2)
+
+def s2is(s, sep):
+    return list(map(lambda x : int(x.strip()), s.split(sep)))
+
+def idx(os, o):
+    return os.index(o) if o in os else -1

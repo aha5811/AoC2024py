@@ -28,9 +28,8 @@ def part1(fname):
     return part(getMul1, fname)
 
 def do1():
-    print(161 == part1(ftest1))
-    print(part1(finput))
-    #174960292
+    assert 161 == part1(ftest1)
+    assert 174960292 == part1(finput)
 
 re2 = reMul + "|(do(?:n't)?)\\(\\)"
 
@@ -51,6 +50,5 @@ def part2(fname):
     return part(getMul2, fname)
 
 def do2():
-    print(48 == part2(ftest2))
-    print(part2(finput))
-    #56275602
+    assert 48 == part2(ftest2)
+    assert 56275602 == part2(finput)

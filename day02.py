@@ -26,9 +26,8 @@ def part1(fname):
     return res
 
 def do1():
-    print(2 == part1(ftest))
-    print(part1(finput))
-    #564
+    assert 2 == part1(ftest)
+    assert 564 == part1(finput)
 
 def check2(ns):
     for n in range(len(ns)):
@@ -46,6 +45,5 @@ def part2(fname):
     return res
 
 def do2():
-    print(4 == part2(ftest))
-    print(part2(finput))
-    #604
+    assert 4 == part2(ftest)
+    assert 604 == part2(finput)

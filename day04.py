@@ -29,9 +29,8 @@ def part1(fname):
     return res
 
 def do1():
-    print(18 == part1(ftest))
-    print(part1(finput))
-    #2521
+    assert 18 == part1(ftest)
+    assert 2521 == part1(finput)
 
 @utils.timeit
 def part2(fname):
@@ -57,6 +56,5 @@ def part2(fname):
     return res
 
 def do2():
-    print(9 == part2(ftest))
-    print(part2(finput))
-    #1912
+    assert 9 == part2(ftest)
+    assert 1912 == part2(finput)
