@@ -1,5 +1,5 @@
 d90 = [(1, 0), (0, 1), (-1, 0), (0, -1)] # W S E N
-dW, dS, dE,dN = d90[0], d90[1], d90[2], d90[3]
+dE, dS, dW,dN = d90[0], d90[1], d90[2], d90[3]
 d45 = [(1, 1), (-1, 1), (-1, -1), (1, -1)] # SE SW NW NE
 dSE, dSW, dNW, dNE = d45[0], d45[1], d45[2], d45[3]
 ds = d90 + d45
@@ -24,6 +24,11 @@ class Map:
             return None
         else:
             return self.rows[y][x]
+
+    def set(self, x, y, c):
+        if self.get(x, y) == None:
+            return
+        self.rows[y][x] = c
 
     def findAll(self, c):
         res = []

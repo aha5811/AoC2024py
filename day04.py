@@ -1,6 +1,6 @@
 import utils
-import map
-from map import Map
+import maps
+from maps import Map
 import os.path
 dir = os.path.dirname(__file__)
 ftest = os.path.join(dir, 'day04_test.txt')
@@ -23,7 +23,7 @@ def part1(fname):
         return True
     
     for p in m.findAll('X'):
-        for d in map.ds:
+        for d in maps.ds:
             if check(m, p, 'MAS', d):
                 res += 1
     return res
@@ -49,8 +49,8 @@ def part2(fname):
         return s == 'MS' or s == 'SM'
     
     for p in m.findAll('A'):
-        s1 = get2(m, p, map.dNW, map.dSE)
-        s2 = get2(m, p, map.dNE, map.dSW)
+        s1 = get2(m, p, maps.dNW, maps.dSE)
+        s2 = get2(m, p, maps.dNE, maps.dSW)
         if ok(s1) and ok(s2):
             res += 1
     return res
