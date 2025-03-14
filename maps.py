@@ -9,7 +9,7 @@ class Map:
         self.rows = []
         with open(fname, 'r') as f:
             for line in f:
-                self.rows.append(list(line))
+                self.rows.append(list(line.strip()))
         self.h = len(self.rows)
         self.w = len(self.rows[0])
 
@@ -26,9 +26,15 @@ class Map:
             return self.rows[y][x]
 
     def set(self, x, y, c):
-        if self.get(x, y) == None:
-            return
-        self.rows[y][x] = c
+        if self.get(x, y) is not None:
+            self.rows[y][x] = c
+
+    def findVs(self):
+        res = set(())
+        for x in range(self.w):
+            for y in range(self.h):
+                res.add(self.get(x, y))
+        return res
 
     def findAll(self, c):
         res = []
@@ -45,3 +51,11 @@ class Pos:
 
     def __str__(self):
         return f'({self.x},{self.y})'
+
+    def __eq__(self, other):
+        if isinstance(other, Pos):
+            return self.x == other.x and self.y == other.y
+        return False
+
+    def __hash__(self):
+        return hash(str(self))
