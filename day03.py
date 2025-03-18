@@ -6,48 +6,46 @@ ftest1 = os.path.join(dir, 'day03_test.txt')
 ftest2 = os.path.join(dir, 'day03_2_test.txt')
 finput = os.path.join(dir, 'day03_input.txt')
 
-reMul = "mul\\((\\d+),(\\d+)\\)"
+re_mul = "mul\\((\\d+),(\\d+)\\)"
 
-def mul(m):
+def mul(m: tuple[str]) -> int:
     return int(m[0]) * int(m[1])
 
-def getMul1(s):
+def get_mul1(s: str) -> int:
     res = 0
-    for m in re.findall(reMul, s):
+    for m in re.findall(re_mul, s):
         res += mul(m)
     return res
 
-def part(mulF, fname):
+def part(mul_func: callable, fname) -> int:
     s = ""
     for line in utils.f2lines(fname):
         s += line
-    return mulF(s)
+    return mul_func(s)
 
 @utils.timeit
 def part1(fname):
-    return part(getMul1, fname)
+    return part(get_mul1, fname)
 
 def do1():
     assert 161 == part1(ftest1)
     assert 174960292 == part1(finput)
 
-re2 = reMul + "|(do(?:n't)?)\\(\\)"
-
-def getMul2(s):
+def get_mul2(s: str) -> int:
     res = 0
     do_mul = True
-    for m in re.findall(re2, s):
+    for m in re.findall(re_mul + "|(do(?:n't)?)\\(\\)", s):
         if m[2] == "do":
             do_mul = True
         elif m[2] == "don't":
             do_mul = False
         elif do_mul:
             res += mul(m)
-    return res    
+    return res
 
 @utils.timeit
 def part2(fname):
-    return part(getMul2, fname)
+    return part(get_mul2, fname)
 
 def do2():
     assert 48 == part2(ftest2)

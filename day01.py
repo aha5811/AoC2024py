@@ -8,10 +8,10 @@ finput = os.path.join(dir, 'day01_input.txt')
 def read(fname):
     l1, l2 = [], []
     for line in utils.f2lines(fname):
-        n2 = utils.s2ns(line) #
-        l1.append(n2[0])
-        l2.append(n2[1])
-    return (l1, l2)
+        ns = utils.s2ns(line)
+        l1.append(ns[0])
+        l2.append(ns[1])
+    return l1, l2
 
 @utils.timeit
 def part1(fname):

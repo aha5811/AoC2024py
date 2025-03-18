@@ -15,17 +15,14 @@ def timeit(func: callable):
 def f2lines(fname):
     return list(map(lambda l: l.strip(), open(fname, 'r').readlines()))
 
-def s2ns(s):
-    res = []
-    for w in s.split():
-        res.append(int(w))
-    return res
+def s2ns(s: str) -> list[int]:
+    return list(map(int, s.split()))
 
 def xor(b1, b2):
     return (not b2 and b1) or (not b1 and b2)
 
-def s2is(s, sep):
+def s2is(s: str, sep: str) -> list[int]:
     return list(map(lambda x : int(x.strip()), s.split(sep)))
 
-def idx(os, o):
+def idx(os: list, o) -> int:
     return os.index(o) if o in os else -1

@@ -50,9 +50,9 @@ def do1():
 def sort(pages, rules):
     def compare(p1, p2):
         for rule in rules:
-            if p1 == rule[0] and p2 == rule[1]:
+            if (p1, p2) == (rule[0], rule[1]):
                 return -1
-            elif p1 == rule[1] and p2 == rule[0]:
+            elif (p1, p2) == (rule[1], rule[0]):
                 return 1
         return 0  
     pages.sort(key=functools.cmp_to_key(compare))
@@ -72,3 +72,6 @@ def part2(fname):
 def do2():
     assert 123 == part2(ftest)
     assert 5564 == part2(finput)
+
+do1()
+do2()

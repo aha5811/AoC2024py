@@ -38,9 +38,8 @@ def part2(fname):
     def get2(p: Pos, d1, d2) -> str:
         
         def get(p: Pos, d) -> str:
-            s = m.get(p.x + d[0], p.y + d[1])
-            return s if s else ''
-        
+            return m.get(p.x + d[0], p.y + d[1]) or ''
+
         return get(p, d1) + get(p, d2)
 
     def ok(s: str) -> bool:

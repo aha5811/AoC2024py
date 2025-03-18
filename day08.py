@@ -56,10 +56,11 @@ def get_antinodes_part2(m: Map, a1: Pos, a2: Pos) -> list[Pos]:
 
     def add_antinodes(a: Pos, nm: int):
         for n in count():
-            an = Pos(a.x + nm * n * dx, a.y + nm * n * dy)
-            if m.get(an.x, an.y) is None:
+            x = a.x + nm * n * dx
+            y = a.y + nm * n * dy
+            if m.get(x, y) is None:
                 break
-            res.append(an)
+            res.append(Pos(x, y))
 
     add_antinodes(a2, 1)
     add_antinodes(a1, -1)

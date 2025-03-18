@@ -87,19 +87,23 @@ def do1():
 def part2(fname):
     blocks = read(fname)
 
+    spaces = list(filter(lambda b : b.bid is None, blocks)) # all spaces
+
     for f in filter(lambda b : b.bid is not None, reversed(blocks)): # all files from reversed
-        ss = None # space start
-        for s in filter(lambda b : b.bid is None, blocks): # all spaces
+        space = None
+        for s in spaces:
             if s.start > f.start:
                 break
-            if s.size >= f.size: # is big enough
-                ss = s
+            if s.size >= f.size:
+                space = s
                 break
-        if ss:
+        if space:
             # move file into space
-            f.start = ss.start
-            ss.size -= f.size
-            ss.start += f.size
+            f.start = space.start
+            space.size -= f.size
+            if space.size == 0:
+                spaces.remove(space)
+            space.start += f.size
 
     return sum(map(lambda b: b.checksum(), filter(lambda b: b.bid is not None, blocks)))
 
