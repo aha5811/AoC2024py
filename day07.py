@@ -1,3 +1,5 @@
+from collections.abc import Callable
+
 import utils
 import math
 import os.path
@@ -8,14 +10,24 @@ finput = os.path.join(dir, 'day07_input.txt')
 def add(n1, n2): return n1 + n2
 def mult(n1, n2): return n1 * n2
 
-def solveable(t, n, ns, fs):
+def solveable(t: int, n: int, ns: list[int], fs: list[Callable]) -> bool:
+    """
+    :param t: target
+    :param n: current result
+    :param ns: numbers to process
+    :param fs: functions for reduction
+    """
     if n > t:
-        return False
+        return False # can't be solved anymore
     if not ns:
-        return True if n == t else False
-    nn = ns.pop(0)
+        return n == t # no more numbers
     for f in fs:
-        if solveable(t, f(n, nn), ns.copy(), fs):
+        """
+        recursion
+        next n = current n func first of ns
+        next ns = current ns without first element 
+        """
+        if solveable(t, f(n, ns[0]), ns[1:], fs):
             return True
     return False
 
@@ -23,6 +35,7 @@ def part(fname, fs):
     res = 0
 
     for line in utils.f2lines(fname):
+        # 7290: 6 8 6 15
         ns = utils.s2is(line.replace(":", ""), " ")
         t = ns.pop(0)
         n = ns.pop(0)

@@ -9,12 +9,12 @@ def check(ns):
     v = ns[0]
     inc = ns[1] > v
     for n in range(1, len(ns)):
-        v2 = ns[n]
-        if xor(v2 > v, inc):
+        vv = ns[n]
+        if xor(vv > v, inc):
             return False
-        if v2 == v or abs(v2 - v) > 3:
+        if vv == v or abs(vv - v) > 3: # difference not in [1, 2, 3]
             return False
-        v = v2
+        v = vv
     return True
 
 @utils.timeit
@@ -29,9 +29,9 @@ def do1():
     assert 2 == part1(ftest)
     assert 564 == part1(finput)
 
-def check2(ns):
+def check_part2(ns):
     for n in range(len(ns)):
-        if check(ns[:n] + ns[n+1:]):
+        if check(ns[:n] + ns[n+1:]): # sublist without element @ position n
             return True
     return False
 
@@ -40,7 +40,7 @@ def part2(fname):
     res = 0
     for line in utils.f2lines(fname):
          ns = utils.s2ns(line)
-         if check(ns) or check2(ns):
+         if check(ns) or check_part2(ns):
              res += 1
     return res
 

@@ -1,3 +1,5 @@
+from typing import Callable
+
 import utils
 from maps import Map, Pos
 from itertools import count
@@ -6,11 +8,10 @@ dir = os.path.dirname(__file__)
 ftest = os.path.join(dir, 'day08_test.txt')
 finput = os.path.join(dir, 'day08_input.txt')
 
-def get_antinodes_part1(m, a1, a2):
+def get_antinodes_part1(m: Map, a1: Pos, a2: Pos) -> list[Pos]:
     res = []
 
-    dx = a2.x - a1.x
-    dy = a2.y - a1.y
+    dx, dy = a2.x - a1.x, a2.y - a1.y
 
     an1 = Pos(a2.x + dx, a2.y + dy)
     if m.get(an1.x, an1.y) is not None:
@@ -22,17 +23,17 @@ def get_antinodes_part1(m, a1, a2):
 
     return res
 
-def part(fname, get_antinodes):
+def part(fname, get_antinodes: Callable) -> int:
 
     m = Map(fname)
 
-    antenna_groups = m.findVs()
-    antenna_groups.remove(".")
+    antenna_group_symbols = m.get_symbols()
+    antenna_group_symbols.remove(".")
 
-    antinodes = set(())
+    antinodes = set()
 
-    for ag in antenna_groups:
-        antennas = m.findAll(ag)
+    for ags in antenna_group_symbols:
+        antennas = m.find_all(ags)
         for a1 in antennas:
             for a2 in antennas:
                 if a1 is not a2:

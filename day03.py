@@ -35,13 +35,13 @@ re2 = reMul + "|(do(?:n't)?)\\(\\)"
 
 def getMul2(s):
     res = 0
-    doMul = True
+    do_mul = True
     for m in re.findall(re2, s):
         if m[2] == "do":
-            doMul = True
+            do_mul = True
         elif m[2] == "don't":
-            doMul = False
-        elif doMul:
+            do_mul = False
+        elif do_mul:
             res += mul(m)
     return res    
 
