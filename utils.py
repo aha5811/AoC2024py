@@ -1,7 +1,7 @@
 from functools import wraps
 import time
 
-def timeit(func):
+def timeit(func: callable):
     @wraps(func)
     def timeit_wrapper(*args, **kwargs):
         start_time = time.perf_counter()
@@ -13,11 +13,7 @@ def timeit(func):
     return timeit_wrapper
 
 def f2lines(fname):
-    res = []
-    with open(fname, 'r') as file:
-        for line in file:
-            res.append(line.strip())
-    return res
+    return list(map(lambda l: l.strip(), open(fname, 'r').readlines()))
 
 def s2ns(s):
     res = []

@@ -1,7 +1,4 @@
-from collections.abc import Callable
-
 import utils
-import math
 import os.path
 dir = os.path.dirname(__file__)
 ftest = os.path.join(dir, 'day07_test.txt')
@@ -10,7 +7,7 @@ finput = os.path.join(dir, 'day07_input.txt')
 def add(n1, n2): return n1 + n2
 def mult(n1, n2): return n1 * n2
 
-def solveable(t: int, n: int, ns: list[int], fs: list[Callable]) -> bool:
+def solveable(t: int, n: int, ns: list[int], fs: list[callable]) -> bool:
     """
     :param t: target
     :param n: current result

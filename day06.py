@@ -12,8 +12,6 @@ def part1(fname):
     m = Map(fname)
 
     ds = [ maps.dN, maps.dE, maps.dS, maps.dW ] # directions in turn order
-    def turn(di):
-        return (di + 1) % len(ds)
 
     gp: Pos = m.find_all('^')[0] # guard position Pos
     gdi = 0 # guard direction index
@@ -27,7 +25,7 @@ def part1(fname):
         yy = gp.y + d[1]
 
         if m.get(xx, yy) == '#': # bonk -> turn
-            gdi = turn(gdi)
+            gdi = (gdi + 1) % len(ds)
         else:
             gp.x, gp.y = xx, yy # change guard position
             m.set(gp.x, gp.y, v) # visited
